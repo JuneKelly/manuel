@@ -22,6 +22,7 @@ Ok, if you insist...
 - Fill the `manuelfile` with 'tasks' (aka bash functions):
   ```
   #! /usr/bin/env bash
+
   function build {
     echo ">> I am building in $1 mode"
   }
