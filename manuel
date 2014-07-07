@@ -20,12 +20,35 @@ if [[ $# = 0 ]]; then
   exit 1
 fi
 
-if [[ -f manuelfile ]]; then
-  source manuelfile
-  eval $@
+
+# built-in tasks
+function init {
+  if [[ -f manuelfile ]]; then
+    echo ">> manuelfile already exists, nothing to do"
+  else
+    echo ">> Creating new manuelfile in `pwd`"
+    echo '#! /usr/bin/env bash
+
+function hello {
+  echo ">> Hello from manuel!"
+}
+' >> manuelfile
+  fi
+}
+
+
+# main
+if [[ "$1" == "init" ]]; then
+  init
 else
-  echo -e "No manuelfile found, exiting"
-  exit 1
+  if [[ -f manuelfile ]]; then
+    source manuelfile
+    eval $@
+  else
+    echo -e "No manuelfile found, exiting"
+    exit 1
+  fi
 fi
+
 
 exit 0
