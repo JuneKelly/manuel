@@ -62,6 +62,7 @@ function manuel_main {
   if [[ -f manuelfile ]]; then
     source manuelfile
     eval $@
+    exit 0
   else
     echo -e "No manuelfile found, exiting"
     exit 1
