@@ -9,19 +9,25 @@
 
 # Usage: manuel [task]
 
-if [[ $# = 0 ]]; then
+
+# -- # -- # -- # -- # -- # -- # -- #
+# utility functions
+# -- #
+function manuel_usage {
   echo -e "  __  __                        _  "
   echo -e " |  \/  |                      | | "
   echo -e " | \  / | __ _ _ __  _   _  ___| | "
   echo -e " | |\/| |/ _\` | '_ \| | | |/ _ \ | "
   echo -e " | |  | | (_| | | | | |_| |  __/ | "
   echo -e " |_|  |_|\__,_|_| |_|\__,_|\___|_| "
-  echo -e "Usage:\n  manuel [task]"
+  echo -e "\n  Usage: manuel [task] [params]"
   exit 1
-fi
+}
 
 
+# -- # -- # -- # -- # -- # -- # -- #
 # built-in tasks
+# -- #
 function init {
   if [[ -f manuelfile ]]; then
     echo ">> manuelfile already exists, nothing to do"
@@ -37,18 +43,27 @@ function hello {
 }
 
 
-# main
-if [[ "$1" == "init" ]]; then
-  init
-else
-  if [[ -f manuelfile ]]; then
-    source manuelfile
-    eval $@
-  else
-    echo -e "No manuelfile found, exiting"
-    exit 1
+# -- # -- # -- # -- # -- # -- # -- #
+# main function
+# -- #
+function manuel_main {
+  if [[ $# = 0 ]]; then
+    manuel_usage
   fi
-fi
+  # main
+  if [[ "$1" == "init" ]]; then
+    init
+  else
+    if [[ -f manuelfile ]]; then
+      source manuelfile
+      eval $@
+    else
+      echo -e "No manuelfile found, exiting"
+      exit 1
+    fi
+  fi
+  exit 0
+}
 
 
-exit 0
+manuel_main $@
