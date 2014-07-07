@@ -20,7 +20,11 @@ Ok, if you insist...
 - Put the `manuel` script somewhere on your PATH
 
 - Create a `manuelfile` in your project. `manuel` provides a handy `init` task
-  for this purpose: `$ manuel init`
+  for this purpose
+  ```bash
+  $ manuel init
+  >> Creating new manuelfile in /your/project/directory
+  ```
 
 - Fill the `manuelfile` with 'tasks' (aka bash functions):
 
