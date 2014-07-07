@@ -20,7 +20,7 @@ Ok, if you insist...
 - Put the `manuel` script somewhere on your PATH
 - Create a `manuelfile` in your project.
 - Fill the `manuelfile` with 'tasks' (aka bash functions):
-  ```
+  ```bash
   #! /usr/bin/env bash
 
   function build {
@@ -33,7 +33,7 @@ Ok, if you insist...
   }
   ```
 - Run your tasks like so:
-  ```
+  ```bash
   $ manuel run_tests
   >> I am building in test mode
   >> Testing, all passed!
