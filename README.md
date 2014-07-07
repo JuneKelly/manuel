@@ -18,8 +18,11 @@ Don't, frankly.
 Ok, if you insist...
 
 - Put the `manuel` script somewhere on your PATH
+
 - Create a `manuelfile` in your project.
+
 - Fill the `manuelfile` with 'tasks' (aka bash functions):
+
   ```bash
   #! /usr/bin/env bash
 
@@ -32,7 +35,9 @@ Ok, if you insist...
     echo ">> Testing, all passed!"
   }
   ```
+
 - Run your tasks like so:
+
   ```bash
   $ manuel run_tests
   >> I am building in test mode
