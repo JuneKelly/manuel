@@ -46,4 +46,4 @@ Ok, if you insist...
 
 # License
 
-MIT
+[MIT](http://opensource.org/licenses/MIT)
