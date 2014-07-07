@@ -31,14 +31,17 @@ function manuel_usage {
 function init {
   if [[ -f manuelfile ]]; then
     echo ">> manuelfile already exists, nothing to do"
+    exit 0
   else
     echo ">> Creating new manuelfile in `pwd`"
     echo '#! /usr/bin/env bash
 
+# run this task with: $ manuel hello
 function hello {
   echo ">> Hello from manuel!"
 }
 ' >> manuelfile
+    exit 0
   fi
 }
 
@@ -47,21 +50,23 @@ function hello {
 # main function
 # -- #
 function manuel_main {
+
   if [[ $# = 0 ]]; then
     manuel_usage
   fi
-  # main
+
   if [[ "$1" == "init" ]]; then
     init
-  else
-    if [[ -f manuelfile ]]; then
-      source manuelfile
-      eval $@
-    else
-      echo -e "No manuelfile found, exiting"
-      exit 1
-    fi
   fi
+
+  if [[ -f manuelfile ]]; then
+    source manuelfile
+    eval $@
+  else
+    echo -e "No manuelfile found, exiting"
+    exit 1
+  fi
+
   exit 0
 }
 
