@@ -51,4 +51,4 @@ Ok, if you insist...
 
 # License
 
-[MIT](http://opensource.org/licenses/MIT)
+Released under the [MIT](http://opensource.org/licenses/MIT) license
