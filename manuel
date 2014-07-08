@@ -61,33 +61,30 @@ function manuel_watch {
   inotifywait -mrq $target_dir --event=CREATE,MOVE,DELETE,ATTRIB | while read LINE
   do
     IFS=' ' read -a event <<< "$LINE"
+
     directory=${event[0]}
     action=${event[1]}
     target=${event[2]}
 
-    if [[ $target == $last_target ]] && \
-       [[ $action == "ATTRIB" ]] && \
-       [[ $last_action == "CREATE" ]]
+    # TODO: this should also handle move_to and move_from
+    if ! ( [[ $target == $last_target ]] && \
+           [[ $action == "ATTRIB" ]] && \
+           [[ $last_action == "CREATE" ]] )
     then
-      last_directory=$directory
-      last_target=$target
-      last_action=$action
-      continue
+      # check if the event target matches any patterns in actions map
+      for k in ${!actions[@]}
+      do
+        v=${actions[$k]}
+        if [[ $target =~ $k ]]; then
+          echo -e "\n>> Change event $action detected for $target ..."
+          eval $v
+        fi
+      done
     fi
-
-    # check if the event target matches any patterns in actions map
-    for k in ${!actions[@]}
-    do
-      v=${actions[$k]}
-      if [[ $target =~ $k ]]; then
-        echo -e "\n>> Change event $action detected for $target ..."
-        eval $v
-      fi
-    done
-    # keep track of what just happened
     last_directory=$directory
     last_target=$target
     last_action=$action
+
   done
 }
 
