@@ -64,19 +64,6 @@ function hello {
 }
 
 function manuel_watch {
-  # Usage:
-  #
-  # function do_something {
-  #   declare -A actions=(
-  #     ["\.js$"]="echo 'we should concat and minify the js again'"
-  #     ["\.go$"]="go build ."
-  #   )
-  #
-  #   manuel_watch . actions
-  # }
-  #
-  # $ manuel do_something
-  #
   target_dir=`readlink -f $1` # a directory to watch for changes in
   actions=$2          # associative array of regex=>command
 
@@ -89,7 +76,8 @@ function manuel_watch {
   echo -e ">> Watching $target_directory"
 
   # set up watches
-  inotifywait -mrq $target_dir --event=CREATE,MOVE,DELETE,ATTRIB | while read LINE
+  inotifywait -mrq $target_dir \
+    --event=CREATE,MOVE,DELETE,ATTRIB | while read LINE
   do
     IFS=' ' read -a event <<< "$LINE"
 
