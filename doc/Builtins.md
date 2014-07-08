@@ -2,6 +2,8 @@
 
 ## init
 
+`$ manuel init`
+
 Creates a new `manuelfile` in the current directory
 
 Example:
@@ -13,7 +15,7 @@ $ manuel init
 
 ## manuel_watch
 
-`manuel_watch [directory] [actions]
+`manuel_watch [directory] [actions]`
 
 Watches a specified directory, and when change is detected looks up the supplied
 associative-array of actions to determine which actions to perform
