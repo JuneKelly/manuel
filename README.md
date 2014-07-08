@@ -52,6 +52,14 @@ Ok, if you insist...
 - [Built-in tasks](doc/Builtins.md)
 
 
+# The Future
+
+Planned features:
+- 'plugins' (aka even more bash functions)
+- some kind of installer
+- less badness
+
+
 # License
 
 Released under the [MIT](http://opensource.org/licenses/MIT) license
