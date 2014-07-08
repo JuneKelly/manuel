@@ -1,5 +1,6 @@
 # Built-in Tasks
 
+
 ## init
 
 `$ manuel init`
@@ -12,6 +13,7 @@ $ cd ~/code/my_awesome_project
 $ manuel init
 >> Creating new manuelfile in /home/username/code/my_awesome_project
 ```
+
 
 ## manuel_watch
 
@@ -33,4 +35,22 @@ function do_something {
   manuel_watch . actions
 }
 
+```
+
+
+## list
+
+`$ manuel list`
+
+List all available tasks
+
+Example:
+```bash
+$ manuel list
+build
+init
+list
+manuel_watch
+run_tests
+start_server
 ```
