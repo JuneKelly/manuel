@@ -49,6 +49,12 @@ function manuel_watch {
   target_dir=`readlink -f $1` # a directory to watch for changes in
   actions=$2          # associative array of regex=>command
 
+  # keep track of the last thing to happen so we
+  # can skip processing if a CREATE is followed by an ATTRIB, etc
+  last_directory=""
+  last_target=""
+  last_action=""
+
   echo -e ">> Watching $target_directory"
 
   # set up watches
@@ -59,6 +65,16 @@ function manuel_watch {
     action=${event[1]}
     target=${event[2]}
 
+    if [[ $target == $last_target ]] && \
+       [[ $action == "ATTRIB" ]] && \
+       [[ $last_action == "CREATE" ]]
+    then
+      last_directory=$directory
+      last_target=$target
+      last_action=$action
+      continue
+    fi
+
     # check if the event target matches any patterns in actions map
     for k in ${!actions[@]}
     do
@@ -68,6 +84,10 @@ function manuel_watch {
         eval $v
       fi
     done
+    # keep track of what just happened
+    last_directory=$directory
+    last_target=$target
+    last_action=$action
   done
 }
 
