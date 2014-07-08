@@ -52,7 +52,7 @@ function manuel_watch {
   echo -e ">> Watching $target_directory"
 
   # set up watches
-  inotifywait -mrq $target_dir --event=MOVE,DELETE,ATTRIB | while read LINE
+  inotifywait -mrq $target_dir --event=CREATE,MOVE,DELETE,ATTRIB | while read LINE
   do
     IFS=' ' read -a event <<< "$LINE"
     directory=${event[0]}
@@ -64,7 +64,7 @@ function manuel_watch {
     do
       v=${actions[$k]}
       if [[ $target =~ $k ]]; then
-        echo -e "\n>> Change detected for $target ..."
+        echo -e "\n>> Change event $action detected for $target ..."
         eval $v
       fi
     done
