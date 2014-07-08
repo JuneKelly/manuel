@@ -13,7 +13,7 @@
 # -- # -- # -- # -- # -- # -- # -- #
 # utility functions
 # -- #
-function manuel_usage {
+function _manuel_usage {
   echo -e "  __  __                        _  "
   echo -e " |  \/  |                      | | "
   echo -e " | \  / | __ _ _ __  _   _  ___| | "
@@ -24,7 +24,7 @@ function manuel_usage {
   exit 1
 }
 
-function real_directory() {
+function _real_directory() {
   DIR=$(echo "${1%/*}")
   (cd "$DIR" && echo "$(pwd -P)")
 }
@@ -33,6 +33,19 @@ function real_directory() {
 # -- # -- # -- # -- # -- # -- # -- #
 # built-in tasks
 # -- #
+function list {
+  tasks=($(declare -F))
+  for t in ${tasks[@]}
+  do
+    if !( [[ $t == "declare" ]] || \
+          [[ $t == "-f" ]] || \
+          [[ "$t" =~ ^_(.*) ]]
+      ); then
+      echo $t
+    fi
+  done
+}
+
 function init {
   if [[ -f manuelfile ]]; then
     echo ">> manuelfile already exists, nothing to do"
@@ -110,10 +123,10 @@ function manuel_watch {
 # -- # -- # -- # -- # -- # -- # -- #
 # main function
 # -- #
-function manuel_main {
+function _manuel_main {
 
   if [[ $# = 0 ]]; then
-    manuel_usage
+    _manuel_usage
   fi
 
   if [[ "$1" == "init" ]]; then
@@ -133,4 +146,4 @@ function manuel_main {
 }
 
 
-manuel_main $@
+_manuel_main $@
