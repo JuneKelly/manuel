@@ -46,6 +46,19 @@ function hello {
 }
 
 function manuel_watch {
+  # Usage:
+  #
+  # function do_something {
+  #   declare -A actions=(
+  #     ["\.js$"]="echo 'we should concat and minify the js again'"
+  #     ["\.go$"]="go build ."
+  #   )
+  #
+  #   manuel_watch . actions
+  # }
+  #
+  # $ manuel do_something
+  #
   target_dir=`readlink -f $1` # a directory to watch for changes in
   actions=$2          # associative array of regex=>command
 
@@ -75,6 +88,7 @@ function manuel_watch {
       for k in ${!actions[@]}
       do
         v=${actions[$k]}
+        # test the key is a regex match against the target file
         if [[ $target =~ $k ]]; then
           echo -e "\n>> Change event $action detected for $target ..."
           eval $v
