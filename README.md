@@ -46,6 +46,7 @@ Just put the `manuel` script somewhere on your path.
 # Documentation
 
 - [Built-in tasks](doc/Builtins.md)
+- [Plugins](doc/Plugins.md)
 
 
 # The Future
