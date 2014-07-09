@@ -11,7 +11,7 @@
 
 
 # -- # -- # -- # -- # -- # -- # -- #
-# utility functions
+# Utility functions
 # -- #
 function _manuel_usage {
   echo -e "  __  __                        _  "
@@ -31,7 +31,7 @@ function _real_directory() {
 
 
 # -- # -- # -- # -- # -- # -- # -- #
-# built-in tasks
+# Built-in tasks
 # -- #
 function list {
   tasks=($(declare -F))
@@ -109,7 +109,7 @@ function manuel_watch {
 
 
 # -- # -- # -- # -- # -- # -- # -- #
-# main function
+# Main function
 # -- #
 function _manuel_main {
 
@@ -134,4 +134,5 @@ function _manuel_main {
 }
 
 
+# execute main function
 _manuel_main $@
