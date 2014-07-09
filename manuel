@@ -41,8 +41,12 @@ function _load_plugins {
   fi
 
   if [[ ! -d $plugin_dir ]]; then
-    echo ">> Manuel plugin directory $plugin_dir does not exist, exiting"
-    exit 1
+    echo ">> Initializing plugin direcotry $plugin_dir"
+    mkdir -p $plugin_dir
+    if [[ $? != "0" ]]; then
+      echo ">> Could not create plugin directory $plugin_dir, exiting"
+      exit 1
+    fi
   fi
 
   plugin_files=$(find $plugin_dir -type f -name "*.manuel")
