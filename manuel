@@ -24,11 +24,6 @@ function _manuel_usage {
   exit 1
 }
 
-function _real_directory() {
-  DIR=$(echo "${1%/*}")
-  (cd "$DIR" && echo "$(pwd -P)")
-}
-
 
 # -- # -- # -- # -- # -- # -- # -- #
 # Built-in tasks
