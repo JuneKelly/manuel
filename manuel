@@ -31,6 +31,27 @@ EOF
 # -- # -- # -- # -- # -- # -- # -- #
 # Built-in tasks
 # -- #
+function _load_plugins {
+  declare plugin_dir
+
+  if [[ ! -z $MANUEL_PLUGIN_DIR ]]; then
+    plugin_dir=$MANUEL_PLUGIN_DIR
+  else
+    plugin_dir=$HOME/.manuel/plugins
+  fi
+
+  if [[ ! -d $plugin_dir ]]; then
+    echo ">> Manuel plugin directory $plugin_dir does not exist, exiting"
+    exit 1
+  fi
+
+  plugin_files=$(find $plugin_dir -type f -name "*.manuel")
+  for f in ${plugin_files[@]}
+  do
+    source $f
+  done
+}
+
 function list {
   tasks=($(declare -F))
   for t in ${tasks[@]}
@@ -114,6 +135,8 @@ function _manuel_main {
   if [[ $# = 0 ]]; then
     _manuel_usage
   fi
+
+  _load_plugins
 
   if [[ "$1" == "init" ]]; then
     init
