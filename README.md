@@ -2,19 +2,15 @@
 
 ![manuel logo](http://i.imgur.com/HuJ6VGb.png)
 
-A grunt-inspired task runner for bash
+A grunt-inspired task runner for bash.
 
 
 # Installation
 
-Just put the `manuel` script somewhere on your path
+Just put the `manuel` script somewhere on your path.
 
 
 # Usage
-
-Don't, frankly.
-
-Ok, if you insist...
 
 - Create a `manuelfile` in your project. `manuel` provides a handy `init` task
   for this purpose
