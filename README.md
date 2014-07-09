@@ -1,6 +1,6 @@
 # manuel
 
-![manuel logo](http://imgur.com/GdTSvJK)
+![manuel logo](http://i.imgur.com/GdTSvJK.png)
 
 A grunt-inspired task runner for bash.
 
