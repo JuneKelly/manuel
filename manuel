@@ -41,7 +41,7 @@ function _load_plugins {
   fi
 
   if [[ ! -d $plugin_dir ]]; then
-    echo ">> Initializing plugin direcotry $plugin_dir"
+    echo ">> Initializing plugin directory $plugin_dir"
     mkdir -p $plugin_dir
     if [[ $? != "0" ]]; then
       echo ">> Could not create plugin directory $plugin_dir, exiting"
