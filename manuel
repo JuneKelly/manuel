@@ -37,7 +37,7 @@ function _load_plugins {
   if [[ ! -z $MANUEL_PLUGIN_DIR ]]; then
     plugin_dir=$MANUEL_PLUGIN_DIR
   else
-    plugin_dir=$HOME/.manuel/plugins
+    plugin_dir=$HOME/.manuel.d/plugins
   fi
 
   if [[ ! -d $plugin_dir ]]; then
