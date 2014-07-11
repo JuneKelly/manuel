@@ -14,7 +14,9 @@
 # Globals
 # -- #
 MANUEL_VERSION="0.1.0"
-
+if [[ -z $MANUEL_PLUGIN_DIR ]]; then
+  MANUEL_PLUGIN_DIR=$HOME/.manuel.d/plugins
+fi
 
 # -- # -- # -- # -- # -- # -- # -- #
 # Utility functions
@@ -38,29 +40,28 @@ EOF
 # -- # -- # -- # -- # -- # -- # -- #
 # Built-in tasks
 # -- #
-function _load_plugins {
-  declare plugin_dir
-
-  if [[ ! -z $MANUEL_PLUGIN_DIR ]]; then
-    plugin_dir=$MANUEL_PLUGIN_DIR
-  else
-    plugin_dir=$HOME/.manuel.d/plugins
+function load_plugin {
+  plugin_name=$1
+  if [[ -z $plugin_name ]]; then
+    echo ">> Warning: load_plugin called with no argument"
+    return
   fi
 
-  if [[ ! -d $plugin_dir ]]; then
+  if [[ ! -d $MANUEL_PLUGIN_DIR ]]; then
     echo ">> Initializing plugin directory $plugin_dir"
-    mkdir -p $plugin_dir
+    mkdir -p $MANUEL_PLUGIN_DIR
     if [[ $? != "0" ]]; then
       echo ">> Could not create plugin directory $plugin_dir, exiting"
       exit 1
     fi
   fi
 
-  plugin_files=$(find $plugin_dir -type f -name "*.manuel")
-  for f in ${plugin_files[@]}
-  do
-    source $f
-  done
+  plugin_file=$(find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel")
+  if [[ -z $plugin_file ]]; then
+    echo ">> Warning: plugin $plugin_name not found in $MANUEL_PLUGIN_DIR"
+  else
+    source $plugin_file
+  fi
 }
 
 function list {
@@ -146,8 +147,6 @@ function _manuel_main {
   if [[ $# = 0 ]]; then
     _manuel_usage
   fi
-
-  _load_plugins
 
   if [[ "$1" == "init" ]]; then
     init
