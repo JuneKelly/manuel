@@ -36,17 +36,8 @@ EOF
   exit 1
 }
 
-
-# -- # -- # -- # -- # -- # -- # -- #
-# Built-in tasks
-# -- #
-function load_plugin {
-  plugin_name=$1
-  if [[ -z $plugin_name ]]; then
-    echo ">> Warning: load_plugin called with no argument"
-    return
-  fi
-
+# bootstrap required file and folders for manuel
+function _bootstrap {
   if [[ ! -d $MANUEL_PLUGIN_DIR ]]; then
     echo ">> Initializing plugin directory $plugin_dir"
     mkdir -p $MANUEL_PLUGIN_DIR
@@ -55,8 +46,22 @@ function load_plugin {
       exit 1
     fi
   fi
+}
+
+
+# -- # -- # -- # -- # -- # -- # -- #
+# Built-in tasks
+# -- #
+function load_plugin {
+  plugin_name=$1
+
+  if [[ -z $plugin_name ]]; then
+    echo ">> Warning: load_plugin called with no argument"
+    return
+  fi
 
   plugin_file=$(find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel")
+
   if [[ -z $plugin_file ]]; then
     echo ">> Warning: plugin $plugin_name not found in $MANUEL_PLUGIN_DIR"
   else
@@ -151,6 +156,8 @@ function _manuel_main {
   if [[ "$1" == "init" ]]; then
     init
   fi
+
+  _bootstrap
 
   if [[ -f manuelfile ]]; then
     source manuelfile
