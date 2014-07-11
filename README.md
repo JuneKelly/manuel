@@ -5,6 +5,11 @@
 A grunt-inspired task runner for bash.
 
 
+# Prerequisites
+
+Manuel depends on `bash` version 4.
+
+
 # Installation
 
 Just put the `manuel` script somewhere on your path.
@@ -47,14 +52,6 @@ Just put the `manuel` script somewhere on your path.
 
 - [Built-in tasks](doc/Builtins.md)
 - [Plugins](doc/Plugins.md)
-
-
-# The Future
-
-Planned features:
-- 'plugins' (aka even more bash functions)
-- some kind of installer
-- less badness
 
 
 # License
