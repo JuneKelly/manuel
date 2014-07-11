@@ -60,7 +60,9 @@ function load_plugin {
     return
   fi
 
-  plugin_file=$(find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel")
+  plugin_file=$(
+    find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel" | head -1
+  )
 
   if [[ -z $plugin_file ]]; then
     echo ">> Warning: plugin $plugin_name not found in $MANUEL_PLUGIN_DIR"
