@@ -13,7 +13,7 @@
 # -- # -- # -- # -- # -- # -- # -- #
 # Globals
 # -- #
-MANUEL_VERSION="0.1.0"
+MANUEL_VERSION="0.1.1"
 MANUEL_DIR=$(
   [[ ! -z $MANUEL_DIR ]] && echo $MANUEL_DIR || echo $HOME/.manuel.d
 )
