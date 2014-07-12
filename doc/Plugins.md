@@ -16,6 +16,10 @@ function what_time_is_it {
 }
 ```
 
+The `load_plugin timeutils` line in the above example searches in the plugins
+directory for a file called `timeutils.manuel` and loads it into the manuel
+context if found.
+
 A `.manuel.d/plugins` directory might look like this:
 
 ```
@@ -49,8 +53,24 @@ $ MANUEL_DIR=/some/path manuel run_tests
 
 ## Writing plugins
 
-TODO
+A plugin should be written as a file containing bash functions. The file should
+be named with the `.manuel` extension, so that the plugin loader can find it.
+For example, we might want to write a plugin to provide handy time-related
+functions, called `timeutil.manuel` :
+```bash
+#! /usr/bin/env bash
 
-## Using plugins
+# timeutils.manuel
 
-TODO
+function datestamp {
+  echo $(date +%Y%m%d-%H%M%S)
+}
+```
+
+A good way of distributing manuel plugins would be to put the plugin file in a git
+repository which the user can clone into their manuel plugins directory:
+
+```bash
+$ cd $HOME/.manuel.d/plugins
+$ git clone git@github.com:<author>/<plugin>.git
+```
