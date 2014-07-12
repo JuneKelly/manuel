@@ -48,6 +48,15 @@ Just put the `manuel` script somewhere on your path.
   ```
 
 
+# Plugins
+
+Manuel supports loading of third-party plugins (again, really just bash functions).
+See [Plugins](doc/Plugins.md) for more details.
+
+Some really nice plugins are:
+- [manuel-contrib-watch](https://github.com/ShaneKilkelly/manuel-contrib-watch)
+
+
 # Documentation
 
 - [Built-in tasks](doc/Builtins.md)
