@@ -102,50 +102,6 @@ function hello {
   fi
 }
 
-function manuel_watch {
-  target_dir=`readlink -f $1` # a directory to watch for changes in
-  actions=$2          # associative array of regex=>command
-
-  # keep track of the last thing to happen so we
-  # can skip processing if a CREATE is followed by an ATTRIB, etc
-  last_directory=""
-  last_target=""
-  last_action=""
-
-  echo -e ">> Watching $target_directory"
-
-  # set up watches
-  inotifywait -mrq $target_dir \
-    --event=CREATE,MOVE,DELETE,ATTRIB | while read LINE
-  do
-    IFS=' ' read -a event <<< "$LINE"
-
-    directory=${event[0]}
-    action=${event[1]}
-    target=${event[2]}
-
-    # TODO: this should also handle move_to and move_from
-    if ! ( [[ $target == $last_target ]] && \
-           [[ $action == "ATTRIB" ]] && \
-           [[ $last_action == "CREATE" ]] )
-    then
-      # check if the event target matches any patterns in actions map
-      for k in ${!actions[@]}
-      do
-        v=${actions[$k]}
-        # test the key is a regex match against the target file
-        if [[ $target =~ $k ]]; then
-          echo -e "\n>> Change event $action detected for $target ..."
-          eval $v
-        fi
-      done
-    fi
-    last_directory=$directory
-    last_target=$target
-    last_action=$action
-  done
-}
-
 
 # -- # -- # -- # -- # -- # -- # -- #
 # Main function
