@@ -27,7 +27,13 @@ $HOME/.manuel.d
 ```
 
 If you would prefer to keep your plugins in another location, just set the
-`MANUEL_PLUGIN_DIR` shell variable to an absolute path to your plugin directory.
+`MANUEL_DIR` shell variable to an absolute path to the place where you would like
+to have manuel store it's plugins and other data. Example:
+```
+$ MANUEL_DIR=/some/path manuel run_tests
+>> Initialising plugin directory in /some/path/plugins
+...
+```
 
 
 ## Writing plugins
