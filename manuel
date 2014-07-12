@@ -19,6 +19,7 @@ MANUEL_DIR=$(
 )
 MANUEL_PLUGIN_DIR=$MANUEL_DIR/plugins
 
+
 # -- # -- # -- # -- # -- # -- # -- #
 # Utility functions
 # -- #
