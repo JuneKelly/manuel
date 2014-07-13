@@ -12,7 +12,13 @@ Manuel depends on `bash` version 4.
 
 # Installation
 
-Just put the `manuel` script somewhere on your path.
+Simply clone this repository and put the `manuel` script on your path.
+For example, clone into `~/opt` and then link the script into `~/bin` :
+```bash
+$ cd ~/opt
+$ git clone git://github.com/ShaneKilkelly/manuel
+$ ln -s $HOME/opt/manuel/manuel $HOME/bin/manuel
+```
 
 
 # Usage
