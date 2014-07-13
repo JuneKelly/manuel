@@ -45,7 +45,13 @@
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>Just put the <code>manuel</code> script somewhere on your path.</p>
+<p>Simply clone this repository and put the <code>manuel</code> script on your path.
+For example, clone into <code>~/opt</code> and then link the script into <code>~/bin</code> :</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/opt
+<span class="nv">$ </span>git clone git://github.com/ShaneKilkelly/manuel
+<span class="nv">$ </span>ln -s <span class="nv">$HOME</span>/opt/manuel/manuel <span class="nv">$HOME</span>/bin/manuel
+</pre></div>
 
 <h1>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
@@ -86,18 +92,19 @@ for this purpose</p>
 <a name="plugins" class="anchor" href="#plugins"><span class="octicon octicon-link"></span></a>Plugins</h1>
 
 <p>Manuel supports loading of third-party plugins (again, really just bash functions).
-See <a href="doc/Plugins.md">Plugins</a> for more details.</p>
+See <a href="https://github.com/ShaneKilkelly/manuel/blob/master/doc/Plugins.md">Plugins</a> for more details.</p>
 
 <p>Some really nice plugins are:</p>
 
 <ul>
 <li><a href="https://github.com/ShaneKilkelly/manuel-contrib-watch">manuel-contrib-watch</a></li>
+<li><a href="https://github.com/ShaneKilkelly/manuel-contrib-concurrent">manuel-contrib-concurrent</a></li>
 </ul><h1>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
 
 <ul>
-<li><a href="doc/Builtins.md">Built-in tasks</a></li>
-<li><a href="doc/Plugins.md">Plugins</a></li>
+<li><a href="https://github.com/ShaneKilkelly/manuel/blob/master/doc/Builtins.md">Built-in tasks</a></li>
+<li><a href="https://github.com/ShaneKilkelly/manuel/blob/master/doc/Plugins.md">Plugins</a></li>
 </ul><h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
