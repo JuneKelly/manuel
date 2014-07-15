@@ -113,11 +113,11 @@ function _manuel_main {
     _manuel_usage
   fi
 
+  _bootstrap
+
   if [[ "$1" == "init" ]]; then
     init
   fi
-
-  _bootstrap
 
   if [[ -f manuelfile ]]; then
     source manuelfile
