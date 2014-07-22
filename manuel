@@ -55,14 +55,14 @@ function _bootstrap {
 # Built-in tasks
 # -- #
 function load_plugin {
-  plugin_name=$1
+  local plugin_name=$1
 
   if [[ -z $plugin_name ]]; then
     echo ">> Warning: load_plugin called with no argument"
     return
   fi
 
-  plugin_file=$(
+  local plugin_file=$(
     find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel" | head -1
   )
 
@@ -74,7 +74,7 @@ function load_plugin {
 }
 
 function list {
-  tasks=($(declare -F))
+  local tasks=($(declare -F))
   for t in ${tasks[@]}
   do
     if !( [[ $t == "declare" ]] || \
