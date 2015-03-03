@@ -9,6 +9,12 @@
 
 # Usage: manuel [task]
 
+# -- # -- # -- # -- # -- # -- # -- #
+# Setup
+# -- #
+
+# Set IFS to just newline and tab.
+IFS="$(printf '\n\t')"
 
 # -- # -- # -- # -- # -- # -- # -- #
 # Globals
