@@ -81,7 +81,7 @@ function load_plugin {
 
 function list {
   tasks=($(declare -F))
-  for t in ${tasks[@]}
+  for t in "${tasks[@]}"
   do
     local task_name=$(printf "%s" "$t" | awk '{ print $3 }')
     if ! [[ "$task_name" =~ ^_(.*) ]]; then
@@ -125,7 +125,7 @@ function _manuel_main {
 
   if [[ -f manuelfile ]]; then
     source manuelfile
-    eval $@
+    eval "$@"
     exit 0
   else
     echo -e "No manuelfile found, exiting"
@@ -137,4 +137,4 @@ function _manuel_main {
 
 
 # execute main function
-_manuel_main $@
+_manuel_main "$@"
