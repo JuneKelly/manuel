@@ -21,9 +21,9 @@ IFS="$(printf '\n\t')"
 # -- #
 MANUEL_VERSION="0.1.2"
 MANUEL_DIR=$(
-  [[ ! -z $MANUEL_DIR ]] && echo $MANUEL_DIR || echo $HOME/.manuel.d
+  [[ ! -z "$MANUEL_DIR" ]] && echo "$MANUEL_DIR" || echo "$HOME/.manuel.d"
 )
-MANUEL_PLUGIN_DIR=$MANUEL_DIR/plugins
+MANUEL_PLUGIN_DIR="$MANUEL_DIR/plugins"
 
 
 # -- # -- # -- # -- # -- # -- # -- #
@@ -48,7 +48,7 @@ EOF
 function _bootstrap {
   if [[ ! -d $MANUEL_PLUGIN_DIR ]]; then
     echo ">> Initializing plugin directory $plugin_dir"
-    mkdir -p $MANUEL_PLUGIN_DIR
+    mkdir -p "$MANUEL_PLUGIN_DIR"
     if [[ $? != "0" ]]; then
       echo ">> Could not create plugin directory $plugin_dir, exiting"
       exit 1
@@ -69,13 +69,13 @@ function load_plugin {
   fi
 
   plugin_file=$(
-    find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel" | head -1
+    find "$MANUEL_PLUGIN_DIR" -type f -name "$plugin_name.manuel" | head -1
   )
 
   if [[ -z $plugin_file ]]; then
     echo ">> Warning: plugin $plugin_name not found in $MANUEL_PLUGIN_DIR"
   else
-    source $plugin_file
+    source "$plugin_file"
   fi
 }
 
