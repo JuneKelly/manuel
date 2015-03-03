@@ -83,11 +83,9 @@ function list {
   tasks=($(declare -F))
   for t in ${tasks[@]}
   do
-    if !( [[ $t == "declare" ]] || \
-          [[ $t == "-f" ]] || \
-          [[ "$t" =~ ^_(.*) ]]
-      ); then
-      echo $t
+    local task_name=$(printf "%s" "$t" | awk '{ print $3 }')
+    if ! [[ "$task_name" =~ ^_(.*) ]]; then
+      echo "$task_name"
     fi
   done
 }
