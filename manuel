@@ -97,7 +97,7 @@ function init {
     echo ">> manuelfile already exists, nothing to do"
     exit 0
   else
-    echo ">> Creating new manuelfile in `pwd`"
+    echo ">> Creating new manuelfile in $(pwd)"
     echo '#! /usr/bin/env bash
 
 # run this task with: $ manuel hello
