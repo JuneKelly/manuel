@@ -34,6 +34,10 @@ function _manuel_usage {
 
   Version: $MANUEL_VERSION
   Usage: manuel [task] [params]
+  Default Tasks:
+    - init: create a fresh manuelfile in this directory
+    - list: list available tasks
+
 EOF
   exit 1
 }
@@ -103,7 +107,6 @@ function hello {
   fi
 }
 
-
 # -- # -- # -- # -- # -- # -- # -- #
 # Main function
 # -- #
@@ -117,6 +120,11 @@ function _manuel_main {
 
   if [[ "$1" == "init" ]]; then
     init
+  fi
+
+  if [[ "$1" == "ke" || "$1" == "que" ]]; then
+    echo ">> Que?"
+    _manuel_usage
   fi
 
   if [[ -f manuelfile ]]; then
