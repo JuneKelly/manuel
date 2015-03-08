@@ -69,7 +69,7 @@ function load_plugin {
   fi
 
   plugin_file=$(
-    find "$MANUEL_PLUGIN_DIR" -type f -name "$plugin_name.manuel" | head -1
+    find -L "$MANUEL_PLUGIN_DIR" -type f -name "$plugin_name.manuel" | head -1
   )
 
   if [[ -z $plugin_file ]]; then
