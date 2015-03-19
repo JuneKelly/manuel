@@ -9,15 +9,21 @@
 
 # Usage: manuel [task]
 
+# -- # -- # -- # -- # -- # -- # -- #
+# Setup
+# -- #
+
+# Set IFS to just newline and tab.
+IFS="$(printf '\n\t')"
 
 # -- # -- # -- # -- # -- # -- # -- #
 # Globals
 # -- #
 MANUEL_VERSION="0.1.2"
 MANUEL_DIR=$(
-  [[ ! -z $MANUEL_DIR ]] && echo $MANUEL_DIR || echo $HOME/.manuel.d
+  [[ ! -z "$MANUEL_DIR" ]] && echo "$MANUEL_DIR" || echo "$HOME/.manuel.d"
 )
-MANUEL_PLUGIN_DIR=$MANUEL_DIR/plugins
+MANUEL_PLUGIN_DIR="$MANUEL_DIR/plugins"
 
 
 # -- # -- # -- # -- # -- # -- # -- #
@@ -46,7 +52,7 @@ EOF
 function _bootstrap {
   if [[ ! -d $MANUEL_PLUGIN_DIR ]]; then
     echo ">> Initializing plugin directory $plugin_dir"
-    mkdir -p $MANUEL_PLUGIN_DIR
+    mkdir -p "$MANUEL_PLUGIN_DIR"
     if [[ $? != "0" ]]; then
       echo ">> Could not create plugin directory $plugin_dir, exiting"
       exit 1
@@ -67,25 +73,23 @@ function load_plugin {
   fi
 
   plugin_file=$(
-    find $MANUEL_PLUGIN_DIR -type f -name "$plugin_name.manuel" | head -1
+    find -L "$MANUEL_PLUGIN_DIR" -type f -name "$plugin_name.manuel" | head -1
   )
 
   if [[ -z $plugin_file ]]; then
     echo ">> Warning: plugin $plugin_name not found in $MANUEL_PLUGIN_DIR"
   else
-    source $plugin_file
+    source "$plugin_file"
   fi
 }
 
 function list {
   tasks=($(declare -F))
-  for t in ${tasks[@]}
+  for t in "${tasks[@]}"
   do
-    if !( [[ $t == "declare" ]] || \
-          [[ $t == "-f" ]] || \
-          [[ "$t" =~ ^_(.*) ]]
-      ); then
-      echo $t
+    local task_name=$(printf "%s" "$t" | awk '{ print $3 }')
+    if ! [[ "$task_name" =~ ^_(.*) ]]; then
+      echo "$task_name"
     fi
   done
 }
@@ -95,7 +99,7 @@ function init {
     echo ">> manuelfile already exists, nothing to do"
     exit 0
   else
-    echo ">> Creating new manuelfile in `pwd`"
+    echo ">> Creating new manuelfile in $(pwd)"
     echo '#! /usr/bin/env bash
 
 # run this task with: $ manuel hello
@@ -129,7 +133,7 @@ function _manuel_main {
 
   if [[ -f manuelfile ]]; then
     source manuelfile
-    eval $@
+    eval "$@"
     exit 0
   else
     echo -e "No manuelfile found, exiting"
@@ -141,4 +145,4 @@ function _manuel_main {
 
 
 # execute main function
-_manuel_main $@
+_manuel_main "$@"
