@@ -65,6 +65,18 @@ Some really nice plugins are:
 (https://github.com/ShaneKilkelly/manuel-contrib-concurrent)
 
 
+# Autocomplete
+
+To enable autocompletion for manuel tasks, simply source the autocompletion file
+corresponding to you shell. For instance, for bash, add to your `~/.bashrc`:
+
+  ```bash
+  source manuel.autocomplete.bash
+  ```
+
+Note: Autocompletion requires manuel to be in your path.
+
+
 # Documentation
 
 - [Built-in tasks](doc/Builtins.md)
