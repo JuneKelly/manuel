@@ -70,9 +70,15 @@ Some really nice plugins are:
 To enable autocompletion for manuel tasks, simply source the autocompletion file
 corresponding to you shell. For instance, for bash, add to your `~/.bashrc`:
 
-  ```bash
-  source manuel.autocomplete.bash
-  ```
+```bash
+source manuel.autocomplete.bash
+```
+
+Or for zsh:
+
+```bash
+source manuel.autocomplete.zsh
+```
 
 Note: Autocompletion requires manuel to be in your path.
 
