@@ -61,8 +61,7 @@ See [Plugins](doc/Plugins.md) for more details.
 
 Some really nice plugins are:
 - [manuel-contrib-watch](https://github.com/ShaneKilkelly/manuel-contrib-watch)
-- [manuel-contrib-concurrent]
-(https://github.com/ShaneKilkelly/manuel-contrib-concurrent)
+- [manuel-contrib-concurrent](https://github.com/ShaneKilkelly/manuel-contrib-concurrent)
 
 
 # Autocomplete
